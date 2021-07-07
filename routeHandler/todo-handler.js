@@ -60,8 +60,8 @@ router.post("/", (req, res) => {
 });
 
 //post multiple todo
-router.post("/all", async (req, res) => {
-  await Todo.insertMany(req.body, (err) => {
+router.post("/all", (req, res) => {
+   Todo.insertMany(req.body, (err) => {
     if (err) {
       res.status(500).json({
         error: "There was an server side error",
@@ -75,8 +75,8 @@ router.post("/all", async (req, res) => {
 });
 
 //put a todo
-router.put("/:id", async (req, res) => {
-  await Todo.updateOne(
+router.put("/:id", (req, res) => {
+  Todo.updateOne(
     { _id: req.params.id },
     {
       $set: {
@@ -97,8 +97,8 @@ router.put("/:id", async (req, res) => {
   );
 });
 //put a todo
-router.put("/:id", async (req, res) => {
-  await Todo.findByIdAndUpdate(
+router.put("/:id", (req, res) => {
+   Todo.findByIdAndUpdate(
     { _id: req.params.id },
     {
       $set: {
@@ -124,8 +124,8 @@ router.put("/:id", async (req, res) => {
 });
 
 //delete todo
-router.delete("/:id", async (req, res) => {
-  await Todo.deleteOne({ _id: req.params.id }, (err) => {
+router.delete("/:id",  (req, res) => {
+   Todo.deleteOne({ _id: req.params.id }, (err) => {
     if (err) {
       res.status(500).json({
         error: "There was an server side error",
